@@ -29,7 +29,7 @@ resource "aws_instance" "test-server" {
              # "sudo microk8s status --wait-ready",
              # "sudo microk8s enable dns ingress",
               "sudo microk8s status",
-              "sudo microk8s kubectl create deployment health-deploy --image=mouni1arjun/healthcare:latest",
+              "sudo microk8s kubectl create deployment health-deploy --image=mouni1arjun/health-care:latest",
               "sudo microk8s kubectl expose deployment health-deploy --port=8082 --type=NodePort",
               "sudo microk8s kubectl get svc",
               "sudo echo Public IP Address of the Instance",
