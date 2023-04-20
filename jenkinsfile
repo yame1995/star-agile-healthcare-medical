@@ -37,5 +37,16 @@ pipeline {
         sh 'docker push mouni1arjun/health-care:latest'
             }
            }
-	}
+    stage ('Configure Test-server with Terraform'){
+      steps {
+        dir('deployneeds'){
+        sh 'sudo chmod 600 manu.pem'
+        sh 'terraform init'
+        sh 'terraform validate'
+        sh 'terraform apply --auto-approve'
+                }
+          }   
+       }
 }
+}
+
