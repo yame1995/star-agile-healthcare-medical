@@ -1,0 +1,18 @@
+pipeline {
+  agent any
+
+  stages {
+    stage('CheckOut') {
+      steps {
+        echo 'Checkout the source code from GitHub'
+	git 'https://github.com/sanumounika/star-agile-health-care.git'
+            }
+    }
+    stage('Package and Build App') {
+      steps {
+        echo 'Build and Package App'
+        sh 'mvn clean package'
+           }
+   	 }
+	}
+}
