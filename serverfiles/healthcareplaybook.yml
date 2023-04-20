@@ -1,0 +1,18 @@
+- name : Configure Docker on test-server Instances
+  hosts : all
+  become: true
+  connection : ssh
+  tasks : 
+  - name: Updating apt
+    command : sudo yum update
+
+  - name : Install Docker
+    command : sudo apt install docker -y
+
+  - name : Start Docker Service
+    command : sudo systemctl start docker
+
+  - name : installing micro8s-kubernetes cluster
+    command : sudo snap install microk8s --classic
+
+
