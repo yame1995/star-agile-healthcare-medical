@@ -4,7 +4,7 @@
   connection : ssh
   tasks : 
   - name: Updating apt
-    command : sudo apt update
+    command : sudo apt-get update
   - name: install python
     command : sudo apt install python3 -y  
   - name : Install Docker
