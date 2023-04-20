@@ -20,6 +20,22 @@ pipeline {
         publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: '/var/lib/jenkins/workspace/health-care-project', reportFiles: 'index.html', reportName: 'HTML Report', reportTitles: '', useWrapperFileDirectly: true])
            }
    	 }
-
+    stage('Image creation') {
+      steps {
+        sh 'docker build -t mouni1arjun/health-care:latest .'
+                    }
+            }
+    stage('Docker Login') {
+      steps {
+	withCredentials([usernamePassword(credentialsId: 'Dockerusername', passwordVariable: 'dockerpass', usernameVariable: 'Dockerusername')]) {
+        sh "docker login -u ${env.Dockerusername} -p ${env.dockerpass}"
+}
+            }
+      }
+    stage('Push Image to Docker Registry') {
+      steps {
+        sh 'docker push mouni1arjun/health-care:latest'
+            }
+           }
 	}
 }
