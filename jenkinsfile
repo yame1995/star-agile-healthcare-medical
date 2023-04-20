@@ -39,7 +39,7 @@ pipeline {
            }
     stage ('Configure Test-server with Terraform'){
       steps {
-        dir('deployneeds'){
+        dir('serverfiles){
         sh 'sudo chmod 600 manu.pem'
         sh 'terraform init'
         sh 'terraform validate'
