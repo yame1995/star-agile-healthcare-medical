@@ -1,52 +1,41 @@
 pipeline {
   agent any
+ 
+ 
+ tools {
+      maven 'M2_HOME'
+          }
 
   stages {
     stage('CheckOut') {
       steps {
         echo 'Checkout the source code from GitHub'
-	git 'https://github.com/sanumounika/star-agile-health-care.git'
+	git 'https://github.com/Fatima-Ishrath021/star-agile-health-care.git'
             }
     }
-    stage('Package and Build App') {
-      steps {
-        echo 'Build and Package App'
-        sh 'mvn clean package'
-           }
-   	 }
-    stage('HTML reports') {
-      steps {
-        echo 'publishing HTML reports'
-        publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: '/var/lib/jenkins/workspace/health-care-project', reportFiles: 'index.html', reportName: 'HTML Report', reportTitles: '', useWrapperFileDirectly: true])
-           }
-   	 }
-    stage('Image creation') {
-      steps {
-        sh 'docker build -t mouni1arjun/health-care:latest .'
-                    }
-            }
-    stage('Docker Login') {
-      steps {
-	withCredentials([usernamePassword(credentialsId: 'Dockerusername', passwordVariable: 'dockerpass', usernameVariable: 'Dockerusername')]) {
-        sh "docker login -u ${env.Dockerusername} -p ${env.dockerpass}"
-}
-            }
-      }
-    stage('Push Image to Docker Registry') {
-      steps {
-        sh 'docker push mouni1arjun/health-care:latest'
-            }
-           }
-    stage ('Configure Test-server with Terraform'){
-      steps {
-        dir('serverfiles'){
-        sh 'sudo chmod 600 manu.pem'
-        sh 'terraform init'
-        sh 'terraform validate'
-        sh 'terraform apply --auto-approve'
-                }
-          }   
-       }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
 }
 
