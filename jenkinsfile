@@ -27,6 +27,11 @@ pipeline {
            }
    	 }
 
+stage('Image creation') {
+      steps {
+        sh 'docker build -t fatima021/health-care021:latest .'
+                    }
+            }
 
 
 
