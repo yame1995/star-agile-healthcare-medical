@@ -41,6 +41,11 @@ stage('Docker Login') {
             }
       }
 
+ stage('Push Image to Docker Registry') {
+      steps {
+        sh 'docker push fatima021/health-care021:latest'
+            }
+           }
 
 
 
