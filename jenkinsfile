@@ -13,7 +13,13 @@ pipeline {
 	git 'https://github.com/Fatima-Ishrath021/star-agile-health-care.git'
             }
     }
-
+   
+   stage('Package and Build App') {
+      steps {
+        echo 'Build and Package App'
+        sh 'mvn clean package'
+           }
+   	 }
 
 
 
