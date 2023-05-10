@@ -10,7 +10,7 @@ pipeline {
     stage('CheckOut') {
       steps {
         echo 'Checkout the source code from GitHub'
-	git 'https://github.com/Fatima-Ishrath021/star-agile-health-care.git'
+	git 'https://github.com/yame1995/star-agile-healthcare-medical.git'
             }
     }
    
@@ -23,13 +23,13 @@ pipeline {
    stage('HTML reports') {
       steps {
         echo 'publishing HTML reports'
-        publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: '/var/lib/jenkins/workspace/health-care-project', reportFiles: 'index.html', reportName: 'HTML Report', reportTitles: '', useWrapperFileDirectly: true])
+        publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: '/var/lib/jenkins/workspace/healthcare', reportFiles: 'index.html', reportName: 'HTML Report', reportTitles: '', useWrapperFileDirectly: true])
            }
    	 }
 
 stage('Image creation') {
       steps {
-        sh 'docker build -t fatima021/health-care021:latest .'
+        sh 'docker build -t fatima021/yamuna-healthcare:latest .'
                     }
             }
 
@@ -43,20 +43,17 @@ stage('Docker Login') {
 
  stage('Push Image to Docker Registry') {
       steps {
-        sh 'docker push fatima021/health-care021:latest'
+        sh 'docker push fatima021/yamuna-healthcare:latest'
             }
            }
-    stage ('Configure Test-server with Terraform'){
-      steps {
-        dir('serverfiles'){
-        sh 'sudo chmod 600 fatima.pem'
-        sh 'terraform init'
-        sh 'terraform validate'
-        sh 'terraform apply --auto-approve'
-                }
-          }   
-       }
-
-}
-}
-
+	   
+	   
+	   
+	   
+	   
+	   
+	   
+	   
+	   }
+	   }
+	   
