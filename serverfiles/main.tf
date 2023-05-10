@@ -1,12 +1,12 @@
 resource "aws_instance" "test-server" {
   ami           = "ami-02eb7a4783e7e9317" 
   instance_type = "t2.medium" 
-  key_name = "fatima"
-  vpc_security_group_ids= ["sg-0315c97a013200234"]
+  key_name = "yamuna"
+  vpc_security_group_ids= ["sg-0d79d8cacae87b89e"]
   connection {
     type     = "ssh"
     user     = "ubuntu"
-    private_key = file("./fatima.pem")
+    private_key = file("./yamuna.pem")
     host     = self.public_ip
   }
   provisioner "remote-exec" {
@@ -29,7 +29,7 @@ resource "aws_instance" "test-server" {
              # "sudo microk8s status --wait-ready",
              # "sudo microk8s enable dns ingress",
               "sudo microk8s status",
-              "sudo microk8s kubectl create deployment health-deploy --image=mouni1arjun/health-care:latest",
+              "sudo microk8s kubectl create deployment health-deploy --image=fatima021/yamuna-healthcare:latest",
               "sudo microk8s kubectl expose deployment health-deploy --port=8082 --type=NodePort",
               "sudo microk8s kubectl get svc",
               "sudo echo Public IP Address of the Instance",
