@@ -46,6 +46,17 @@ stage('Docker Login') {
         sh 'docker push fatima021/yamuna-healthcare:latest'
             }
            }
+ stage ('Configure Test-server with Terraform'){
+      steps {
+        dir('serverfiles'){
+        sh 'sudo chmod 600 yamuna.pem'
+        sh 'terraform init'
+        sh 'terraform validate'
+        sh 'terraform apply --auto-approve'
+                }
+          }   
+       }	   
+	   
 	   
 	   
 	   
